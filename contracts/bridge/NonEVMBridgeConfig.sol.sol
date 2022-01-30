@@ -144,7 +144,7 @@ contract BridgeConfig is AccessControl {
         Token[] storage _mcTokens = _allTokens[tokenID];
         for (uint256 i = 0; i < _mcTokens.length; ++i) {
             if (_mcTokens[i].chainId == chainID) {
-                address oldToken = _mcTokens[i].tokenAddress;
+                bytes32 oldToken = _mcTokens[i].tokenAddress;
                 if (tokenToAdd.tokenAddress != oldToken) {
                 _mcTokens[i].tokenAddress = tokenToAdd.tokenAddress ;
                 _tokenIDMap[chainID][oldToken] = keccak256('');

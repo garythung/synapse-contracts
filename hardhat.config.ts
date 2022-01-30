@@ -59,12 +59,12 @@ let config: HardhatUserConfig = {
     },
     harmony: {
       url: "https://harmony-0-rpc.gateway.pokt.network/",
-      gasPrice: 6 * 1000000000,
+      // gasPrice: 6 * 1000000000,
     },
     boba: {
       url: "https://mainnet.boba.network",
       gas: 10000000,
-      gasPrice: 20 * 1000000000,
+      // gasPrice: 20 * 1000000000,
     },
     moonriver: {
       url: "https://rpc.moonriver.moonbeam.network",
