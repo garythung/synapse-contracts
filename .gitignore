@@ -8,7 +8,6 @@ node_modules/*
 .eslintcache
 docs
 /out
-/lib
 
 ### macOS ###
 # General
