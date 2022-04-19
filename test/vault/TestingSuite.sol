@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity >=0.6.12;
+pragma solidity 0.8.11;
 
 import "forge-std/Test.sol";
 
@@ -36,9 +36,17 @@ contract TestingSuite is Test {
         assembly {
             _vault := create(0, add(vaultBytecode, 0x20), mload(vaultBytecode))
         }
-        IVault vault = IVault(_vault);
-        assertEq(vault.NODEGROUP_ROLE(), keccak256("NODEGROUP_ROLE"));
 
+        bytes32 _admin = vm.load(BRIDGE, ADMIN_SLOT);
+        address admin = address(uint160(uint256(_admin)));
+        vm.startPrank(admin);
+
+        IProxy(BRIDGE).upgradeTo(_vault);
+        vm.stopPrank();
+
+        IVault vault = IVault(BRIDGE);
+
+        assertEq(vault.NODEGROUP_ROLE(), keccak256("NODEGROUP_ROLE"));
         assertEq(vault.bridgeVersion(), 7);
     }
 }
